@@ -1,8 +1,11 @@
 <?php
-include 'navbar.php';
-include 'component/dbconnect.php';
 
- session_start();
+
+// session_start();//////IT fixes a lot of problem like session function works on a two or more files.........
+
+include 'component/dbconnect.php';
+include 'navbar.php';
+ 
  $adminid= isset($_SESSION['adminid'])?$_SESSION['adminid'] :null;
  echo $adminid;
  if(!isset($adminid)){
@@ -107,6 +110,7 @@ margin-bottom:23px;
 
 box-shadow:var(--box-shadow);
 }
+
 
 </style>
 

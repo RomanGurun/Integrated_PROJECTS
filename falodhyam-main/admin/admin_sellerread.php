@@ -1,7 +1,8 @@
 <?php
+
+
 include 'navbar.php';
 include 'component/dbconnect.php';
-session_start();
 $adminid= isset( $_SESSION['adminid'])?$_SESSION['adminid'] :null;
 if(!isset($adminid)){
       

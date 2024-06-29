@@ -11,7 +11,6 @@ if(isset($_POST['delete'])){
 $delete_product->execute([$product]);
 
 }
-session_start();
 $view_sellerid= isset($_SESSION['id'])?$_SESSION['id'] :null;
 
 

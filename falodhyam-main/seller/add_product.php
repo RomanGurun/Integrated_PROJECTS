@@ -1,10 +1,12 @@
 <?php
+
+session_start();
+
 include 'navbar.php';
 include 'component/dbconnect.php';
 ?>
 <?php
 
-session_start();
 $sellerid=$_SESSION['id'];
 
 if(isset($_POST['publish'])){

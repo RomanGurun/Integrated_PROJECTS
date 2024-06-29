@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 include 'component/dbconnect.php';
 
 include 'navbar.php';
@@ -27,7 +30,6 @@ include 'navbar.php';
 
 <?php
 
-session_start();
 
 $Specific_order=$_SESSION['id'];
 
