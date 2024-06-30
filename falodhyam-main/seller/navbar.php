@@ -254,7 +254,7 @@ $fetchseller = $seller->fetch(PDO::FETCH_ASSOC);
 <a href="dashboard.php"><span>Dashboard</span></a>
 <a href="add_product.php"><span>Add product</span></a>
 <a href="view_product.php"><span>view product</span></a>
-<a href=""><span>accounts</span></a>
+<!-- <a href=""><span>accounts</span></a> -->
 </nav>
 
 <div class="icon">
