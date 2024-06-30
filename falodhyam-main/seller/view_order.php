@@ -64,6 +64,36 @@ $delete_product->execute([$product]);
         .readprice{
             margin-left:21rem !important ;
         }
+
+.orderprice{
+    display: inline-block;
+    font-size: 24px;
+    padding: 5px;
+    margin-top: 0x;
+    margin-bottom: 0px;
+    margin-left: 6rem;
+    text-transform: capitalize;
+    font-weight: bold;
+    color: var(--green);
+
+
+
+}
+.farmerOrderbox{
+    height: 58rem;
+    box-shadow: var(--box-shadow);
+
+}
+
+.farmerinform{
+    text-align: center;
+    font-weight: 600;
+    color:brown;
+    display: block;
+    margin-top: 25px;
+    font-size: 23px
+}
+
     </style>
 </head>
 <body>
@@ -88,6 +118,7 @@ $delete_product->execute([$product]);
           
           <?php
 
+
 $select_product=$conn->prepare("SELECT * FROM `orders` WHERE `s-id`=? ");
 $select_product->execute([$Specific_order]);
 if($select_product->rowCount()>0){
@@ -95,9 +126,33 @@ if($select_product->rowCount()>0){
 while($fetch_product=$select_product->fetch(PDO::FETCH_ASSOC))
 {
 
+
+// ==================== FETCH PRODUCT TABLE ROW THOROUGH PRODUCT-ID of ORDERS ====================
+
+$product_id=$conn->prepare("SELECT * FROM `products` WHERE `id` =?");
+$product_id->execute([$fetch_product['product_id']]);
+
+if($product_id->rowCount()>0){ ////YEAH IT RUNS
+
+    $fetch_idproduct=$product_id->fetch(PDO::FETCH_ASSOC);
+
+
+
+
+
+}
+// ================ FETCH PRODUCT TABLE ROW THOROUGH PRODUCT-ID of ORDERS ========================
+
+
+
+
+
+
+
+
 ?>
 <form action="" method="post">
-    <div class="farmerpbox">
+    <div class="farmerOrderbox">
     <!-- <span class="seller-id">Product id is <?= $fetch_product['id'] ?> and seller-name is <?= $fetch_foreign['name'] ?> </span> -->
 
         <span class="farmerpstatus" style="<?php if($fetch_product['status']=="pending"){
@@ -106,33 +161,68 @@ while($fetch_product=$select_product->fetch(PDO::FETCH_ASSOC))
 <!-- ==================================== Total price needs to be inserted ================================== -->
 
 
-        <span class="price readprice">Price = $<?= $fetch_product['price'] ?>/-</span>
-        <span class="price readprice">Quantity = $<?= $fetch_product['qty'] ?>/-</span>
+
+<!--========================= FETCH FROM PRODUCTS TABLE THORUGH S-ID OF ORDERS TABLE =================================== -->
+
+<div>
+<span class="orderprice">Price = Rs<?= $fetch_product['price'] ?>/-</span>
+<span class="orderprice">Quantity = <?= $fetch_product['qty'] ?>/-</span>
+
+
+
+</div>
+
+<div class="farmerproductname">
+    <?= $fetch_idproduct['name']?>
+</div>
+
+<div class="farmerpimage" id="farmeridproduct">
+<img class="Ornamentimage" id="idproducts" src="img/<?= $fetch_idproduct['image']; ?>" alt="">
+</div>
+
+
+
+<!--========================= FETCH FROM PRODUCTS TABLE THORUGH S-ID OF ORDERS TABLE =================================== -->
 
         <!-- This input stores a fetch value on  html tag........ -->
 <input type="hidden" name="productId" value="<?=  $fetch_product['id'];  ?>">  
 
-<div class="farmerproductname">
-    <?= $fetch_product['user_id']?>
+<span class="orderprice">Total Amount = Rs <?= $fetch_product['price']*$fetch_product['qty'] ?>/-</span>
+
+
+<div class="farmerinform">
+   Buyer Name : <?= $fetch_product['name']?>
+</div>
+<div class="farmerinform">
+  Buyer Email : <?= $fetch_product['email']?>
 </div>
 
-<div class="farmerproductname">
-    <?= $fetch_product['name']?>
-</div>
-<div class="farmerproductname">
-    <?= $fetch_product['email']?>
+<div class="farmerinform">
+  Buyer Address : <?= $fetch_product['address']?>
 </div>
 
-<div class="farmerproductname">
-    <?= $fetch_product['address']?>
+<div class="farmerinform">
+  Buyer House number : <?= $fetch_product['house_number']?>
+</div>
+<div class="farmerinform">
+  Buyer Phone number : <?= $fetch_product['number']?>
+</div>
+<div class="farmerinform">
+  Ordered Date : <?= $fetch_product['date_ordered']?>
 </div>
 
 
 
 
-<div class="farmermessage">
-    <?= $fetch_product['house_number']?>
+
+
+
+
+<div class="farmerinform">
+  payment_method  : <?= $fetch_product['method']?>
 </div>
+
+
 
 <div class="farmerEDRbox">
 <button type="submit" name="delete" class="btn" onclick="confirmMessage() ">Delete</button>
