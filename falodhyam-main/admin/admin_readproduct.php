@@ -56,7 +56,7 @@ $delete_product->execute([$product]);
     <link rel="stylesheet" href="style/original.css">
     <style>
         .readprice{
-            margin-left:21rem !important ;
+            margin-left:2rem !important ;
         }
     </style>
 </head>

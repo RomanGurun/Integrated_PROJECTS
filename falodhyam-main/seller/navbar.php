@@ -59,6 +59,7 @@ include 'component/dbconnect.php';
     --box-shadow: 0 0 10px rgba(0 0 0/15%);
 }
 
+
 body{
     background:url('img/body-bg.jpg');
 fit:content;
@@ -119,8 +120,18 @@ width:12%;
 /* ==================================media-query==================================== */
      @media(max-width:991px){
 #menu-btn{
-    display:block
+    display:block;
+
+    color:#87A143;
+    
 }
+#user-btn{
+    color:#87A143;
+}
+
+
+
+
         #firstlogo{
     width:23%;
 }
@@ -131,20 +142,30 @@ display:none;
     flex-direction:column
 }
 .navbar{
-    /* transition:all 0.7s ease-in; */
-/* height: 9rem; */
-height: 13rem;
-width:100%;
+    border-radius: 8px;
+        height: 13rem;
+        margin-top: 14px;
+        margin-left: 0rem;
+        width: 80%;
+
 }
+
+
 #firstlogo{
     margin-left:-72%;
     /* margin-left:7%; */
+}
+nav{
+    
+    background:white;
 }
 
 nav a{
     display: block;
 /* background:var(--green); */
-box-shadow:var(--box-shadow);
+/* box-shadow:var(--box-shadow); */
+
+cursor: pointer;
 font-size:23.3px;
     margin: 9px;
     padding:10px;
@@ -170,9 +191,16 @@ header{
     right: 7%;
     
 }
+
+
+#user-btn{
+color: #87A143;
+    font-size: 22px;
+    margin-top: 2px;
+    margin-right: 7px;
+}
+
      }
-
-
 
      @media(max-width:500px){
 #logo{

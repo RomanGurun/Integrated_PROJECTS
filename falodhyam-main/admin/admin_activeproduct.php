@@ -49,8 +49,17 @@ $delete_product->execute([$product]);
     <link rel="stylesheet" href="style/original.css">
     <style>
         .readprice{
-            margin-left:21rem !important ;
+            margin-left:2rem !important ;
         }
+ 
+        #mainpbox{
+height:38rem;
+
+
+      }
+
+
+
     </style>
 </head>
 <body>
@@ -84,7 +93,7 @@ while($fetch_product=$select_product->fetch(PDO::FETCH_ASSOC))
 
 ?>
 <form action="" method="post">
-    <div class="farmerpbox">
+    <div class="farmerpbox" id="mainpbox">
     <!-- <span class="seller-id">Product id is <?= $fetch_product['id'] ?> and seller-name is <?= $fetch_foreign['s-name'] ?> </span> -->
 
         <span class="farmerpstatus" style="<?php if($fetch_product['status']=="active"){

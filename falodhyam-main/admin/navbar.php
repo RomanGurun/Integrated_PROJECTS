@@ -138,9 +138,24 @@ width:12%;
 /* ==================================media-query==================================== */
      @media(max-width:991px){
 #menu-btn{
-    display:block
+    display:block;
+
+    color:#87A143;
+    
 }
-        #firstlogo{
+
+#user-btn{
+    color: #87A143;
+        font-size: 22px;
+        margin-top: 2px;
+        margin-right: 7px;
+
+
+
+
+
+}
+     #firstlogo{
     width:23%;
 }
 .navbar.active{
@@ -149,12 +164,20 @@ display:none;
 .navbar.direction{
     flex-direction:column
 }
+
 .navbar{
-    /* transition:all 0.7s ease-in; */
-/* height: 9rem; */
-height: 13rem;
-width:100%;
+    border-radius: 8px;
+        margin-top: 14px;
+        margin-left: 0rem;
+        width: 80%;
+
 }
+
+
+
+
+
+
 #firstlogo{
     margin-left:-72%;
     /* margin-left:7%; */
@@ -164,6 +187,7 @@ nav a{
     display: block;
 /* background:var(--green); */
 box-shadow:var(--box-shadow);
+
 font-size:23.3px;
     margin: 9px;
     padding:10px;
@@ -177,7 +201,9 @@ nav a span:hover{
     color:green;
     border-bottom:solid 2px green;
 }
-
+nav{
+background: white;
+}
 
 header{
     /* justify-content:space-between; */
@@ -272,7 +298,7 @@ backdrop-filter:blur(20px);
 <p id="terminator">&times;</p>
     <?php
         if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
-            echo '<strong style="font-size:18px;color:white">Email:</strong> <span style="font-size:18px;color:black">'.$fetchadmin['useremail'].' </span><br><a href="logout.php">log out from '.$fetchadmin['useremail'];' </button>';
+            echo '<strong style="font-size:18px;color:white">Email:</strong> <span style="font-size:18px;color:black">'.$fetchadmin['useremail'].' </span><br><a href="admin_logout.php">log out from '.$fetchadmin['useremail'];' </button>';
             
         } else {
              

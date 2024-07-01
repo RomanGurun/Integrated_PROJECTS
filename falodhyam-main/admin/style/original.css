@@ -256,9 +256,16 @@ margin-left:0rem !important;
 }
 .farmerpbox{
     box-shadow:var(--box-shadow);
-    height:32rem;
+    /* height:37rem; */
     box-shadow:var(--box-shadow);  
-}.farmerpstatus{
+
+background-color: #7cab05;
+
+
+}
+
+
+.farmerpstatus{
     display: inline-block;
     font-size: 22px;
     background: var(--light-green);

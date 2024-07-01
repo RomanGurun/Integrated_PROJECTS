@@ -5,6 +5,11 @@ session_start();
 include 'component/dbconnect.php';
 
 include 'navbar.php';
+
+// ==================LITTLE BIT CONSFUSION IS IN A PHP AND A HTML MERGE WITH A WHILE LOOOP IN THIS BELOW CODE====================================
+// ====================SEE CODEWITHHARRY FOR REFER. IF FOREGETS============================
+
+
 // $getid=$_GET['post_id'];
 // $view_sellerid=$_GET['sid'];
 
@@ -47,6 +52,18 @@ $delete_product->execute([$product]);
 
 }
 
+if(isset($_POST['complete'])){
+
+    $product = $_POST['productId'];
+    $message = "active";
+    $complete_product = $conn->prepare("UPDATE `orders` SET `status` = ? WHERE `id` = ?");
+    $complete_product->execute([$message, $product]);
+
+}
+
+
+
+
 ?>
 <!--========================================== Delete Operation ========================================== -->
 
@@ -62,7 +79,7 @@ $delete_product->execute([$product]);
     <link rel="stylesheet" href="style/original.css">
     <style>
         .readprice{
-            margin-left:21rem !important ;
+            margin-left:2rem !important ;
         }
 
 .orderprice{
@@ -93,6 +110,25 @@ $delete_product->execute([$product]);
     margin-top: 25px;
     font-size: 23px
 }
+
+  /*======================================== MEDAI QUERY ======================================================= */
+
+  @media(max-width:991px) {
+    .farmerOrderbox{
+    height: 70rem;
+    box-shadow: var(--box-shadow);
+
+}
+
+
+
+    }
+
+
+  /*======================================== MEDAI QUERY ======================================================= */
+
+
+
 
     </style>
 </head>
@@ -156,7 +192,7 @@ if($product_id->rowCount()>0){ ////YEAH IT RUNS
     <!-- <span class="seller-id">Product id is <?= $fetch_product['id'] ?> and seller-name is <?= $fetch_foreign['name'] ?> </span> -->
 
         <span class="farmerpstatus" style="<?php if($fetch_product['status']=="pending"){
-            echo"color:green"; } ?> " >  <?= $fetch_product['status']; ?>  </span>
+            echo"color:green"; }else{ echo "color:green"; } ?> " >  <?= $fetch_product['status']; ?>  </span>
 
 <!-- ==================================== Total price needs to be inserted ================================== -->
 
@@ -165,8 +201,8 @@ if($product_id->rowCount()>0){ ////YEAH IT RUNS
 <!--========================= FETCH FROM PRODUCTS TABLE THORUGH S-ID OF ORDERS TABLE =================================== -->
 
 <div>
-<span class="orderprice">Price = Rs<?= $fetch_product['price'] ?>/-</span>
-<span class="orderprice">Quantity = <?= $fetch_product['qty'] ?>/-</span>
+<span class="orderprice">Price = Rs <?= $fetch_product['price'] ?></span>
+<span class="orderprice">Quantity = <?= $fetch_product['qty'] ?></span>
 
 
 
@@ -184,10 +220,11 @@ if($product_id->rowCount()>0){ ////YEAH IT RUNS
 
 <!--========================= FETCH FROM PRODUCTS TABLE THORUGH S-ID OF ORDERS TABLE =================================== -->
 
-        <!-- This input stores a fetch value on  html tag........ -->
-<input type="hidden" name="productId" value="<?=  $fetch_product['id'];  ?>">  
+ <!--========================= This input stores a fetch value on  html tag........============================================= -->
 
-<span class="orderprice">Total Amount = Rs <?= $fetch_product['price']*$fetch_product['qty'] ?>/-</span>
+ <input type="hidden" name="productId" value="<?=  $fetch_product['id'];  ?>">  
+
+<span class="orderprice">Total Amount = Rs <?= $fetch_product['price']*$fetch_product['qty'] ?></span>
 
 
 <div class="farmerinform">
@@ -226,6 +263,7 @@ if($product_id->rowCount()>0){ ////YEAH IT RUNS
 
 <div class="farmerEDRbox">
 <button type="submit" name="delete" class="btn" onclick="confirmMessage() ">Delete</button>
+<button type="submit" name="complete" class="btn" onclick="confirmcomplete() ">Completed</button>
 <a class="viewpath btn" href="dashboard.php " > Go Back</a>
 
 </div>
@@ -248,6 +286,20 @@ event.preventDefault();
 
 }
 }
+
+function confirmcomplete(){
+    let b =prompt("Is your products really submitted to Customers ?If 'Yes' then TYPE 'CONFIRM'. ");
+if(b!=='CONFIRM'){
+event.preventDefault();
+
+
+}
+
+}
+
+
+
+
 
 </script>
 

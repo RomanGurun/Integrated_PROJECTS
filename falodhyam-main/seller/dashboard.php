@@ -27,8 +27,8 @@ $seller=$conn->prepare("SELECT * FROM `seller` WHERE `s-id`=? ");
 $seller->execute([$sellerid]);
 if($seller->rowCount()>0){
 
-    echo"The seller id is".$sellerid;
-    echo "<a href='logout.php'>LOGOUT</a>";
+    // echo"The seller id is".$sellerid;
+    // echo "<a href='logout.php'>LOGOUT</a>";
 // Logical ERROR
 }
 

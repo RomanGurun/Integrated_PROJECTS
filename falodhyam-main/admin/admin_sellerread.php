@@ -10,7 +10,7 @@ if(!isset($adminid)){
 exit();
 }
 
-echo $adminid."vaneko tyo ho";
+// echo $adminid."vaneko tyo ho";
 
 
 
@@ -18,8 +18,8 @@ $admin=$conn->prepare("SELECT * FROM `admin` WHERE `id`=? ");
 $admin->execute([$adminid]);
 if($admin->rowCount()>0){
     
-    echo"The admin id is".$adminid;
-    echo "<a href='logout.php'>LOGOUT</a>";
+    // echo"The admin id is".$adminid;
+    // echo "<a href='logout.php'>LOGOUT</a>";
     
 }
 if(isset($_POST['delete'])){
@@ -55,8 +55,12 @@ $seller->execute([$sellerval]);
 .admin-container{
     border:solid 2px red;
 
-
 }
+
+#mainpbox{
+    height:37rem;
+}
+
 
 .admin-seller{
     display:flex;
@@ -191,7 +195,7 @@ if($seller->rowCount()>0)
 <!-- $select_product=$conn->prepare("SELECT * FROM `products`"); -->
 <!-- $select_product->execute(); -->
 <form action="" method="post">
-    <div class="farmerpbox">
+    <div class="farmerpbox" id="mainpbox">
 <div class="userinformation">Seller Information</div>
 <input type="hidden" name="seller-id"value="<?=$fetchseller['s-id']  ?>">      
 
@@ -212,9 +216,9 @@ if($seller->rowCount()>0)
 if(a!=='CONFIRM'){ exit;}
 ">Delete</button> -->
 <button type="submit" name="delete" class="btn" onclick="confirmDelete()">Delete</button>
-
-<a class="viewpath btn" href="admin_readproduct.php?post_id=<?= $fetch_product['id'];?> ?sid=<?= $fetch_foreign['s-id']; ?>" >Registered</a>
 <a class="viewpath btn" href="admin_dashboard.php " > Go Back</a>
+
+<!-- <a class="viewpath btn" href="admin_readproduct.php?post_id=<?= $fetch_product['id'];?> ?sid=<?= $fetch_foreign['s-id']; ?>" >Registered</a> -->
 
 </div>
 

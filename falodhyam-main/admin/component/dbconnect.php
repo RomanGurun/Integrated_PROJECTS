@@ -11,7 +11,7 @@ $conn2= new PDO($db_name2,$username2,$userpasword2);
 
 
 if($conn2){
-    echo'database two connecetd successfully';
+    // echo'database two connecetd successfully';
 
 }else{
 
@@ -31,7 +31,7 @@ $conn= new PDO($db_name,$username,$userpasword);
 
 
 if($conn){
-    echo'database connecetd successfully';
+    // echo'database connecetd successfully';
 
 }else{
 

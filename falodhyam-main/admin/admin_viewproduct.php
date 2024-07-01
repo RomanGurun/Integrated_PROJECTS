@@ -36,6 +36,16 @@ $view_sellerid= isset($_SESSION['id'])?$_SESSION['id'] :null;
     <title>View Product Page</title>
 <!-- <link rel="stylesheet" href="../style/two.css"> -->
 <link rel="stylesheet" href="style/original.css">
+
+<style>
+.farmerpbox{
+    height:37rem;
+}
+
+
+</style>
+
+
 </head>
 <body>
 

@@ -7,7 +7,10 @@ include 'component/dbconnect.php';
 include 'navbar.php';
  
  $adminid= isset($_SESSION['adminid'])?$_SESSION['adminid'] :null;
- echo $adminid;
+//  echo $adminid;
+
+
+
  if(!isset($adminid)){
        
     header("location:admin_login.php");
@@ -20,8 +23,8 @@ $admin=$conn->prepare("SELECT * FROM `admin` WHERE `id`=? ");
 $admin->execute([$adminid]);
 if($admin->rowCount()>0){
 
-    echo"The admin id is".$adminid;
-    echo "<a href='admin_logout.php'>LOGOUT</a>";
+    // echo"The admin id is".$adminid;
+    // echo "<a href='admin_logout.php'>LOGOUT</a>";
 
 }
 if(isset($_POST['delete'])){
