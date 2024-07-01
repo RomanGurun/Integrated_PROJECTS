@@ -9,6 +9,11 @@ if(!isset($sellerid)){
 exit;
 }
 
+// Ensure the session ID is set
+if (!isset($_SESSION['id'])) {
+    echo "<script>alert('You need to log in first.')</script>";
+    exit;
+}
 
 
 

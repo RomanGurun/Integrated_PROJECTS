@@ -31,8 +31,8 @@ if (isset($_POST['publish']) || isset($_POST['draft'])) {
         // $check_product = $conn->prepare("SELECT * FROM `products` WHERE `name` = ? AND `image` = ?");
         // $check_product->execute([$productname, $image]);
 
-        $check_productextra= $conn->prepare("SELECT * FROM `products` WHERE `image` = ?");
-        $check_productextra->execute([$image]);
+        $check_productextra= $conn->prepare("SELECT * FROM `products` WHERE `image` = ? AND `s-id` = ? ");
+        $check_productextra->execute([$image,$_SESSION['id']]);
         if($check_productextra->rowCount()>0){
             echo '<script>alert("Duplicate Image of Product.")</script>';
             exit;
@@ -40,8 +40,8 @@ if (isset($_POST['publish']) || isset($_POST['draft'])) {
 
 
 
-        $check_product = $conn->prepare("SELECT * FROM `products` WHERE `name` = ?");
-        $check_product->execute([$productname]);
+        $check_product = $conn->prepare("SELECT * FROM `products` WHERE `name` = ? AND `s-id` = ? ");
+        $check_product->execute([$productname,$_SESSION['id']]);
 
         if ($check_product->rowCount() > 0) {
             echo '<script>alert("Duplicate Product Name.")</script>';

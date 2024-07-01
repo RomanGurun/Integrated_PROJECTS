@@ -327,7 +327,8 @@
         //     }
         // })
         
-        
+        // ===================== SUBMITION VALIDATION CODE ============================== 
+
         document.querySelector('form').addEventListener('submit', function (event) {
     var isUsernameValid = validatename();
     var isEmailValid = validateemail();
@@ -340,7 +341,10 @@
     }
 });
        
-        
+   
+        // ===================== SUBMITION VALIDATION CODE ============================== 
+
+
         
             </script>
 
