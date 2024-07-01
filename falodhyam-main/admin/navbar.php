@@ -264,6 +264,31 @@ backdrop-filter:blur(20px);
 <body> -->
 
 
+
+<form method="post" id="ham-account">
+<div class="modal" id="modal">
+    
+<p id="terminator">&times;</p>
+    <?php
+        if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+            echo '<strong style="font-size:18px;color:white">Email:</strong> <span style="font-size:18px;color:black;cursor:pointer ">'.$fetchadmin['useremail'].' </span><br><button style="font-size:18px; background:green; border:solid 2px green; border-radius:20px; "><a style="color:red;" href="admin_logout.php">log out from '.$fetchadmin['useremail'];' </button>';
+            
+        } else {
+             
+            echo '<a href="login.php" class="btn">login</a>
+        <a href="signup.php" class="btn">signup</a>';
+        }
+        ?>
+
+</div>
+</form>
+
+
+
+
+
+
+
 <header class="header">
 <a id="firstlogo"href=""><img id="logo" src="../seller/img/ourlogo.jpg" alt="no-image" srcset="">
 <!-- <span id="companyname">FalfulKarobar</span> -->
@@ -292,23 +317,6 @@ backdrop-filter:blur(20px);
 </header>
 
 
-<form method="post" id="ham-account">
-<div class="modal" id="modal">
-    
-<p id="terminator">&times;</p>
-    <?php
-        if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
-            echo '<strong style="font-size:18px;color:white">Email:</strong> <span style="font-size:18px;color:black">'.$fetchadmin['useremail'].' </span><br><a href="admin_logout.php">log out from '.$fetchadmin['useremail'];' </button>';
-            
-        } else {
-             
-            echo '<a href="login.php" class="btn">login</a>
-        <a href="signup.php" class="btn">signup</a>';
-        }
-        ?>
-
-</div>
-</form>
 
 <script>
     var opener = document.getElementById("user-btn");

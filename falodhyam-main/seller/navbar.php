@@ -261,11 +261,23 @@ $fetchseller = $seller->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
+<form method="post" id="ham-account">
+<div class="modal" id="modal">
+    
+<p id="terminator">&times;</p>
+    <?php
+        if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
+            echo '<strong style="font-size:18px;color:white">Email:</strong> <span style="font-size:18px;color:black">'.$fetchseller['s-email'].' </span><br><a href="Alllogout.php">log out from '.$fetchseller['s-email'];' </button>';
+            
+        } else {
+             
+            echo '<a href="login.php" class="btn">login</a>
+        <a href="signup.php" class="btn">signup</a>';
+        }
+        ?>
 
-
-
-
-
+</div>
+</form>
 
 
 
@@ -292,24 +304,6 @@ $fetchseller = $seller->fetch(PDO::FETCH_ASSOC);
 </div>
 
 </header>
-
-<form method="post" id="ham-account">
-<div class="modal" id="modal">
-    
-<p id="terminator">&times;</p>
-    <?php
-        if (isset($_SESSION['id']) && $_SESSION['id'] != "") {
-            echo '<strong style="font-size:18px;color:white">Email:</strong> <span style="font-size:18px;color:black">'.$fetchseller['s-email'].' </span><br><a href="logout.php">log out from '.$fetchseller['s-email'];' </button>';
-            
-        } else {
-             
-            echo '<a href="login.php" class="btn">login</a>
-        <a href="signup.php" class="btn">signup</a>';
-        }
-        ?>
-
-</div>
-</form>
 
 
 
