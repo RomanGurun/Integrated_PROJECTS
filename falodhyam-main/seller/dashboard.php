@@ -12,6 +12,8 @@ include 'component/dbconnect.php';
 
 $seller = $conn->prepare("SELECT * FROM `seller` WHERE `s-id` = ?");
 $seller->execute([$sellerid]);
+$fetchname=$seller->fetch(PDO::FETCH_ASSOC);
+
 
 if ($seller->rowCount() > 0) {
  
@@ -110,13 +112,44 @@ padding-left:5px;            }
             height: 22rem;
             margin-top: 10px;
         }
+
+
+        .label-container{
+    
+    width: 86%;
+    margin: 0 auto;
+    padding: 12px 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
     </style>
 
     <link rel="stylesheet" href="style/one.css">
     <link rel="stylesheet" href="style/original.css">
 </head>
 <body>
-    
+ 
+<div class="wallpaper">
+        <?php
+        if (isset($_SESSION['id'])== true) {
+            $info_msg[] = "Welcome, " . $fetchname['s-name'] . "!";
+        }
+
+        ?>
+        <?php require ("component/alert.php"); ?>
+   
+</div>
+<script>
+    function closeLabel() {
+    var label = document.querySelector('.label-container');
+    label.style.display = 'none';
+}
+</script>
+
+
+
 <div class="carousel">
     <div id="fruitshead">
         <h1 id="heading">Rules and Regulations </h1>

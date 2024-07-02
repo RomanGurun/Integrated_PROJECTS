@@ -82,8 +82,8 @@ while($fetch_product=$select_product->fetch(PDO::FETCH_ASSOC))
         <span class="farmerpstatus" style="<?php if($fetch_product['status']=="deactive" || $fetch_product['status']=="Deactive"){
             echo"color:red "; } ?> " >  <?= $fetch_product['status']; ?>  </span>
 
-        <span class="price">Rs. <?= $fetch_product['price'] ?>/-</span>
-        <span class="seller-id">Person id is <?= $fetch_product['s-id'] ?> and seller-name is <?= $fetch_foreign['s-name'] ?> </span>
+        <span class="price">Rs <?= $fetch_product['price'] ?></span>
+     
 <input type="hidden" name="productId" value="<?= $fetch_product['id'];  ?>">  
 
 <div class="farmerpimage">
