@@ -31,9 +31,9 @@ if (isset($_POST['publish']) || isset($_POST['draft'])) {
         // $check_product = $conn->prepare("SELECT * FROM `products` WHERE `name` = ? AND `image` = ?");
         // $check_product->execute([$productname, $image]);
 
-        $check_productextra= $conn->prepare("SELECT * FROM `products` WHERE `image` = ? AND `s-id` = ? ");
-        $check_productextra->execute([$image,$_SESSION['id']]);
-        if($check_productextra->rowCount()>0){
+        $check_productextra = $conn->prepare("SELECT * FROM `products` WHERE `image` = ? AND `s-id` = ? ");
+        $check_productextra->execute([$image, $_SESSION['id']]);
+        if ($check_productextra->rowCount() > 0) {
             echo '<script>alert("Duplicate Image of Product.")</script>';
             exit;
         }
@@ -41,11 +41,11 @@ if (isset($_POST['publish']) || isset($_POST['draft'])) {
 
 
         $check_product = $conn->prepare("SELECT * FROM `products` WHERE `name` = ? AND `s-id` = ? ");
-        $check_product->execute([$productname,$_SESSION['id']]);
+        $check_product->execute([$productname, $_SESSION['id']]);
 
         if ($check_product->rowCount() > 0) {
             echo '<script>alert("Duplicate Product Name.")</script>';
-            
+
         } else {
             $stmt = $conn->prepare("INSERT INTO `products` (`name`, `price`, `image`, `product_detail`, `status`, `s-id`, `type`, `available_stock`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bindParam(1, $productname);
@@ -108,12 +108,13 @@ if (isset($_POST['publish']) || isset($_POST['draft'])) {
 
                     <div class="input-field">
                         <label for="">Product Price Per Kg</label>
-                        <input type="number" name="price"  placeholder="Add product price" required>
+                        <input type="number" name="price" placeholder="Add product price" required>
                     </div>
 
                     <div class="input-field">
                         <label for="">Available Stock</label>
-                        <input type="number" name="stock"  step="1" placeholder="Add total product available" oninput="validateInput(this)" required>
+                        <input type="number" name="stock" step="1" placeholder="Add total product available"
+                            oninput="validateInput(this)" required>
                     </div>
 
                     <div class="input-field">
@@ -134,7 +135,8 @@ if (isset($_POST['publish']) || isset($_POST['draft'])) {
 
                     <div class="input-field">
                         <label for="">Product Detail</label>
-                        <textarea name="detail" cols="30" rows="10" placeholder="Write product description" required></textarea>
+                        <textarea name="detail" cols="30" rows="10" placeholder="Write product description"
+                            required></textarea>
                     </div>
 
                     <div class="input-field">

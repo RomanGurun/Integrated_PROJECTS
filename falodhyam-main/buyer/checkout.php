@@ -52,7 +52,7 @@ if (isset($_POST['place_order'])) {
         if ($get_product->rowCount() > 0) {
             $fetch_pro = $get_product->fetch(PDO::FETCH_ASSOC);
             $available_stock = $fetch_pro['available_stock'];
-            if ($available_stock >= $_GET['qty'] && $_GET['qty']>=1) {
+            if ($available_stock >= $_GET['qty'] && $_GET['qty'] >= 1) {
                 $available_stock -= $_GET['qty'];
                 $update_stock = $con->prepare("UPDATE products SET available_stock = ? WHERE id = ?");
                 $update_stock->execute([$available_stock, $fetch_pro['id']]);
@@ -125,6 +125,16 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "") {
     exit();
 }
 
+if(isset($_GET['qty'])){
+$get_pro = $con->prepare("SELECT * FROM products WHERE id = ? AND status = ? LIMIT 1");
+$get_pro->execute([$_GET['get_id'], "Active"]);
+
+$fetch_pro = $get_pro->fetch(PDO::FETCH_ASSOC);
+if ($fetch_pro['available_stock'] < $_GET['qty']) {
+    header('Location: view_products.php?overflow=1');
+    exit; // Important: Stop execution after redirection
+}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,6 +160,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "") {
         .price,
         .grand-total {
             text-align: center;
+            font-size: 28px;
+            font-weight: bold;
         }
 
         .box-container .flex div h3,
@@ -164,16 +176,27 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "") {
             border-radius: 20px;
             font-size: 18px;
         }
-
+        
         .flexy {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
         }
-
+        .flexy img{
+            max-width:200px;
+            width: 40%;
+            height:auto;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
         .summary {
             margin: 19px 0;
             border: 2px solid var(--green);
+        }
+        .item{
+            border: 2px 0 2px 0 solid var(--green);
+            
         }
     </style>
 </head>
@@ -224,13 +247,15 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "") {
                                     $grand_total += $sub_total;
                                     ?>
                                     <div class="flex flexy">
-                                        <div>
+                                        <div class="item">
                                             <img style="width:200px; height:200px;"
                                                 src="../seller/img/<?php echo $fetch_product['image'] ?>" alt="Product Image">
                                             <h3 class="name"><?= $fetch_product['name']; ?></h3>
                                             <p class="price"><?= $fetch_cart['qty']; ?> x <?= $fetch_product['price']; ?></p>
                                             <input type="hidden" name="product_id" value="<?= $fetch_product['id']; ?>">
-                                            <button class="btn" type="submit" name="delete_product">delete</button>
+                                           <center> <button class="btn" type="submit" name="delete_product">delete</button></center>
+                                           <br>
+                                           <hr>
                                         </div>
                                     </div>
                                     <?php
