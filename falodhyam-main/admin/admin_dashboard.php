@@ -7,8 +7,7 @@ include 'component/dbconnect.php';
 include 'navbar.php';
  
  $adminid= isset($_SESSION['adminid'])?$_SESSION['adminid'] :null;
-//  echo $adminid;
-
+ 
 
 
  if(!isset($adminid)){

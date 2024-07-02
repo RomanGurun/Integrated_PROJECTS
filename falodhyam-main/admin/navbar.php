@@ -8,11 +8,26 @@
 session_start();
 include 'component/dbconnect.php';
 
-$adminid= $_SESSION['adminid'];
-$admin=$conn->prepare("SELECT * FROM `admin` WHERE `id`=? ");
-$admin->execute([$adminid]);
 
-$fetchadmin = $admin->fetch(PDO::FETCH_ASSOC);
+$admincheck= isset($_SESSION['adminid'])?$_SESSION['adminid'] :null;
+ 
+
+
+ if(!isset($admincheck)){
+       
+    header("location:admin_login.php");
+exit;
+}
+
+
+
+
+
+$adminnav= $_SESSION['adminid'];
+$adminfirst=$conn->prepare("SELECT * FROM `admin` WHERE `id`=? ");
+$adminfirst->execute([$adminnav]);
+
+$fetchadmin = $adminfirst->fetch(PDO::FETCH_ASSOC);
 
     
 
