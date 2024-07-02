@@ -35,13 +35,17 @@ $view_sellerid= isset($_SESSION['id'])?$_SESSION['id'] :null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Product Page</title>
 <!-- <link rel="stylesheet" href="../style/two.css"> -->
-<link rel="stylesheet" href="style/original.css">
+<link rel="stylesheet" href="style/original1.css">
 
 <style>
 .farmerpbox{
-    height:37rem;
+    /* height:37rem; */
 }
-
+.farmerseller{
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
+}
 
 </style>
 
@@ -107,8 +111,12 @@ $fetch_foreign=$select_from_foreign->fetch(PDO::FETCH_ASSOC);
         <span class="farmerpstatus" style="<?php if($fetch_product['status']=="deactive" || $fetch_product['status']=="Deactive"){
             echo"color:red "; } ?> " >  <?= $fetch_product['status']; ?>  </span>
 
-        <span class="price">Rs. <?= $fetch_product['price'] ?>/-</span>
-        <span class="seller-id">Person id is <?= $fetch_product['s-id'] ?> and seller-name is <?= $fetch_foreign['s-name'] ?> </span>
+        <span class="price">Rs <?= $fetch_product['price'] ?></span>
+        <div class="farmerseller">
+        <span class="farmerseller">Seller Id : <?= $fetch_product['s-id'] ?> </span>
+        <span class="farmerseller">Seller Name : <?= $fetch_foreign['s-name'] ?> </span>  
+    </div>
+
 <input type="hidden" name="productId" value="<?= $fetch_product['id'];  ?>">  
 
 <div class="farmerpimage">

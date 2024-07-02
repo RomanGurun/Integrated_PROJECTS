@@ -41,6 +41,10 @@ $delete_product->execute([$product]);
 
 }
 
+
+
+
+
 ?>
 <!--========================================== Delete Operation ========================================== -->
 
@@ -53,7 +57,7 @@ $delete_product->execute([$product]);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="style/one.css">
-    <link rel="stylesheet" href="style/original.css">
+    <link rel="stylesheet" href="style/original1.css">
     <style>
         .readprice{
             margin-left:2rem !important ;
@@ -62,6 +66,11 @@ $delete_product->execute([$product]);
 </head>
 <body>
     
+
+
+
+
+
 <div class="carousel">
 <div class="fruitspage">
 <h1 id="heading">READ PRODUCTS</h1>
@@ -90,20 +99,52 @@ while($fetch_product=$select_product->fetch(PDO::FETCH_ASSOC))
 {
 
 ?>
+
+<?php
+//==================== FOREIGN KEY IMPORT CONCEPT HERE SELLER TABLE IS SELECT ====================================
+$sellerid=$fetch_product['s-id'];
+$select_from_foreign=$conn2->prepare("SELECT * FROM `seller` WHERE `s-id` = ?");
+$select_from_foreign->execute([$sellerid]);
+$fetch_foreign=$select_from_foreign->fetch(PDO::FETCH_ASSOC);
+
+
+//==================== FOREIGN KEY IMPORT CONCEPT HERE SELLER TABLE IS SELECT ====================================
+
+
+?>
+
+
+
+
+
 <form action="" method="post">
     <div class="farmerpbox">
 
-    <span class="seller-id">Product id is <?= $fetch_product['id'] ?>  </span>
-
+   
+    
         <span class="farmerpstatus" style="<?php if($fetch_product['status']=="deactive"){
             echo"color:red "; } ?> " >  <?= $fetch_product['status']; ?>  </span>
 
-        <span class="price readprice">$<?= $fetch_product['price'] ?>/-</span>
+        <span class="price readprice">Rs <?= $fetch_product['price'] ?></span>
 <input type="hidden" name="productId" value="<?= $fetch_product['id'];  ?>">  
+<!-- <span class="seller-id">Product ID : <?= $fetch_product['id'] ?>  </span> -->
+
+<div class="farmerseller">
+        <span class="farmerseller">Seller Id : <?= $fetch_product['s-id'] ?> </span>
+        <span class="farmerseller">Seller Name : <?= $fetch_foreign['s-name'] ?> </span>  
+    </div>
+
+
 
 <div class="farmerpimage">
 <img class="Ornamentimage"src="./../seller/img/<?= $fetch_product['image']; ?>" alt="">
 </div>
+
+
+
+
+
+
 <div class="farmerproductname">
     <?= $fetch_product['name']?>
 </div>

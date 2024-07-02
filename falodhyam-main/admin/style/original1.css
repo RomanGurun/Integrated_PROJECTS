@@ -259,9 +259,14 @@ margin-left:0rem !important;
     /* height:37rem; */
     box-shadow:var(--box-shadow);  
 
-background-color: #7cab05;
+/* background-color: #7cab05; */
 
 
+}
+.farmerseller{
+    font-size:20px;
+    font-weight:bold;
+    text-align:center;
 }
 
 

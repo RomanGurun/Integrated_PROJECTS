@@ -58,7 +58,7 @@ $seller->execute([$sellerval]);
 }
 
 #mainpbox{
-    height:37rem;
+    /* height:37rem; */
 }
 
 
@@ -78,6 +78,7 @@ margin:10px;
 .id,.sname{
     display:block;
 font-size:21px;
+text-align:center;
 margin-left:32px;
 text-transform:capitalize;
 }
@@ -91,13 +92,14 @@ color: var(--selenagreen);
 margin-bottom:23px;
 }
 #sellerimg{
-    border-radius: 135px;
-    height: 4rem;
+  
+    height: 10rem;
     object-fit:contain;
 }
 .farmerpimage{
     display:block;
-    margin-left:27px;
+    margin-left:50px;
+
 }
 
 
@@ -112,7 +114,7 @@ margin-bottom:23px;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style/one.css">
-    <link rel="stylesheet" href="style/original.css">
+    <link rel="stylesheet" href="style/original1.css">
 </head>
 <body>
     
@@ -199,8 +201,12 @@ if($seller->rowCount()>0)
 <div class="userinformation">Seller Information</div>
 <input type="hidden" name="seller-id"value="<?=$fetchseller['s-id']  ?>">      
 
+
 <div class="farmerpimage">
 <img id="sellerimg"src="./../seller/img/<?= $fetchseller['s-pan_card']; ?>" alt="">
+</div>
+<div>
+    <span class="sname">Pan-Card </span>
 </div>
 
 

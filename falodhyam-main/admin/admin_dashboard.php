@@ -125,7 +125,7 @@ box-shadow:var(--box-shadow);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style/one.css">
-    <link rel="stylesheet" href="style/original.css">
+    <link rel="stylesheet" href="style/original1.css">
 </head>
 <body>
     
