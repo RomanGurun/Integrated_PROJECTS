@@ -55,7 +55,7 @@ $delete_product->execute([$product]);
 if(isset($_POST['complete'])){
 
     $product = $_POST['productId'];
-    $message = "active";
+    $message = "completed";
     $complete_product = $conn->prepare("UPDATE `orders` SET `status` = ? WHERE `id` = ?");
     $complete_product->execute([$message, $product]);
 

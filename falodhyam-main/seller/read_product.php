@@ -73,7 +73,7 @@ while($fetch_product=$select_product->fetch(PDO::FETCH_ASSOC))
         <span class="farmerpstatus" style="<?php if($fetch_product['status']=="deactive"){
             echo"color:red "; } ?> " >  <?= $fetch_product['status']; ?>  </span>
 
-        <span class="price readprice">$<?= $fetch_product['price'] ?>/-</span>
+        <span class="price readprice">Rs <?= $fetch_product['price'] ?></span>
 <input type="hidden" name="productId" value="<?= $fetch_product['id'];  ?>">  
 
 <div class="farmerpimage">
