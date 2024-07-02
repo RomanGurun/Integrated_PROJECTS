@@ -122,7 +122,6 @@ if (isset($_GET['overflow']) && $_GET['overflow'] == 1) {
         }
 
         .box {
-            border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
             display: inline-block;
@@ -192,7 +191,7 @@ if (isset($_GET['overflow']) && $_GET['overflow'] == 1) {
                 while ($fetch_products = $select_products->fetch(PDO::FETCH_ASSOC)) {
                     ?>
                     <form action="" method="post" class="box">
-                        <img src="../seller/img/<?= $fetch_products['image']; ?>" class='img' />
+                        <img src="../seller/img/<?= $fetch_products['image']; ?>" style="border-radius:50%" class='img' />
                         <?php
                         if (!isset($_SESSION['user_id']) || $_SESSION['user_id'] == "") {
                             echo "<div style='background-color:rgba(19, 78, 0, 0.956); color:white'>login for more features </div>";
@@ -214,7 +213,17 @@ if (isset($_GET['overflow']) && $_GET['overflow'] == 1) {
                         }
                         echo $product_name;
                         ?> </h3>
-
+                        <p>
+                        <strong>From: </strong>
+                        <?php
+                        $fetch_name = $con->prepare("SELECT * FROM `seller` WHERE `s-id` = ?");
+                        $fetch_name->execute([$fetch_products["s-id"]]);
+                        $fetch_result = $fetch_name->fetch(PDO::FETCH_ASSOC); // Fetch the result
+                        echo $fetch_result['s-name']; // Display the seller's name
+                
+                        ?></p>
+                        <p><b>Available stock: </b><?=$fetch_products["available_stock"];?></p>
+                        
                         <strong class="typeof"><?= $fetch_products['type'] ?></strong>
                         <input type="hidden" name="product_id" value="<?= $fetch_products['id']; ?>">
                         <?php

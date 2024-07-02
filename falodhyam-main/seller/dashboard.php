@@ -1,6 +1,6 @@
 <?php
 session_start();
-$sellerid = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+$sellerid = isset($_SESSION['id']) ? $_SESSION['id'] : "";
 
 if (!$sellerid) {
     header("location:login.php");
@@ -12,11 +12,11 @@ include 'component/dbconnect.php';
 
 $seller = $conn->prepare("SELECT * FROM `seller` WHERE `s-id` = ?");
 $seller->execute([$sellerid]);
-$fetchname=$seller->fetch(PDO::FETCH_ASSOC);
+$fetchname = $seller->fetch(PDO::FETCH_ASSOC);
 
 
 if ($seller->rowCount() > 0) {
- 
+
 }
 
 // ========================================ORDER PHP CODE ========================================
@@ -32,6 +32,7 @@ $fetchorder = $order->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,7 +57,8 @@ $fetchorder = $order->fetch(PDO::FETCH_ASSOC);
             margin: 10px;
         }
 
-        .id, .sname {
+        .id,
+        .sname {
             display: block;
             font-size: 21px;
             margin-left: 32px;
@@ -93,15 +95,16 @@ $fetchorder = $order->fetch(PDO::FETCH_ASSOC);
             box-shadow: var(--box-shadow);
         }
 
-        ul {
-            list-style: none;
-            /* border: solid 2px black; */
+        ol {
+            width: 80%;
+            margin: 0 auto;
         }
-        ul li{
-            font-size:20px;
-             color:red;
 
-padding-left:5px;            }
+        ol li {
+            font-size: 20px;
+            color: white;
+            text-align: justify;
+        }
 
         #fruitshead {
             display: flex;
@@ -114,81 +117,85 @@ padding-left:5px;            }
         }
 
 
-        .label-container{
-    
-    width: 86%;
-    margin: 0 auto;
-    padding: 12px 0;
-    display: flex;
-    justify-content: space-between;
+        .label-container {
 
-}
+            width: 86%;
+            margin: 0 auto;
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-between;
 
+        }
     </style>
 
     <link rel="stylesheet" href="style/one.css">
     <link rel="stylesheet" href="style/original.css">
 </head>
+
 <body>
- 
-<div class="wallpaper">
+
+    <div class="wallpaper">
         <?php
-        if (isset($_SESSION['id'])== true) {
+        if (isset($_SESSION['id']) == true) {
             $info_msg[] = "Welcome, " . $fetchname['s-name'] . "!";
         }
 
         ?>
         <?php require ("component/alert.php"); ?>
-   
-</div>
-<script>
-    function closeLabel() {
-    var label = document.querySelector('.label-container');
-    label.style.display = 'none';
-}
-</script>
 
-
-
-<div class="carousel">
-    <div id="fruitshead">
-        <h1 id="heading">Rules and Regulations </h1>
-        <ul>
-            <li>1. Product descriptions, images, and prices must be accurate and truthful. Misleading information is prohibited.</li>
-            <li>2. Prices should be fair and transparent, including all taxes and additional costs clearly stated.</li>
-            <li>3. Sellers must comply with food safety standards and regulations, ensuring fruits are free from harmful chemicals or pesticides.</li>
-            <li>4. All fruits sold must be fresh and of high quality. Spoiled or substandard products are not allowed.</li>
-            <li>5. Sellers cannot add a duplicate name or image of products.</li>
-            <li>6. Seller account will be deleted if they add more than 3 fake products.</li>
-        </ul>
     </div>
-    <div class="box">
-        <a href="dashboard.php">Home</a><span>Dashboard</span>
-    </div>
-    <div class="admins-box">
-        <div class="sellerinform"><?= $orderval ?> </div>
-        <div class="userinformation">Number of Orders</div>
-        <div class="farmerEDRbox">
-            <a class="viewpath btn" href="view_order.php">View</a>
+    <script>
+        function closeLabel() {
+            var label = document.querySelector('.label-container');
+            label.style.display = 'none';
+        }
+    </script>
+
+
+
+    <div class="carousel">
+        <div id="fruitshead">
+            <h1 id="heading">Roles and Regolations </h1>
+            <ol>
+                <li>Product descriptions, images, and prices must be accurate and truthfol. Misleading information is
+                    prohibited.</li>
+                <li>Prices shoold be fair and transparent, including all taxes and additional costs clearly stated.
+                </li>
+                <li>Sellers must comply with food safety standards and regolations, ensuring fruits are free from
+                    harmfol chemicals or pesticides.</li>
+                <li>All fruits sold must be fresh and of high quality. Spoiled or substandard products are not
+                    allowed.</li>
+                <li>Sellers cannot add a duplicate name or image of products.</li>
+                <li>Seller account will be deleted if they add more than 3 fake products.</li>
+            </ol>
+        </div>
+        <div class="box">
+            <a href="dashboard.php">Home</a><span>Dashboard</span>
+        </div>
+        <div class="admins-box">
+            <div class="sellerinform"><?= $orderval ?> </div>
+            <div class="userinformation">Number of Orders</div>
+            <div class="farmerEDRbox">
+                <a class="viewpath btn" href="view_order.php">View</a>
+            </div>
         </div>
     </div>
-</div>
 
 </body>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Find the element with id 'fruitshead'
-    const fruitshead = document.getElementById('fruitshead');
-    
-    if (fruitshead && fruitshead.parentNode.tagName === 'A' && fruitshead.parentNode.style.display === 'none') {
-        const parent = fruitshead.parentNode;
-        // Insert the 'fruitshead' element before the parent 'a' tag
-        parent.parentNode.insertBefore(fruitshead, parent);
-        // Remove the parent 'a' tag
-        parent.parentNode.removeChild(parent);
-    }
-});
+    document.addEventListener('DOMContentLoaded', function () {
+        // Find the element with id 'fruitshead'
+        const fruitshead = document.getElementById('fruitshead');
+
+        if (fruitshead && fruitshead.parentNode.tagName === 'A' && fruitshead.parentNode.style.display === 'none') {
+            const parent = fruitshead.parentNode;
+            // Insert the 'fruitshead' element before the parent 'a' tag
+            parent.parentNode.insertBefore(fruitshead, parent);
+            // Remove the parent 'a' tag
+            parent.parentNode.removeChild(parent);
+        }
+    });
 </script>
 
 
