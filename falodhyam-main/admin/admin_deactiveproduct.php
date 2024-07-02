@@ -134,12 +134,20 @@ if (isset($_POST['delete'])) {
 
 
 
+
                                     <div class="farmerpimage">
                                         <img class="Ornamentimage" src="../seller/img/<?= $fetch_product['image']; ?>" alt="">
                                     </div>
                                     <div class="farmerproductname">
                                         <?= $fetch_product['name'] ?>
                                     </div>
+
+<div class="farmerEDRbox">
+
+
+<a class="btn" href="admin_editproduct.php?id=<?= $fetch_product['id']; ?>?sid=<?= $fetch_foreign['s-id'] ?> ">Edit</a>
+<button type="submit" name="delete" class="btn" onclick="confirmMessage() ">Delete</button>
+<a class="viewpath btn" href="admin_dashboard.php " > Go Back</a>
 
                                     <div class="farmermessage">
                                         <?= $fetch_product['product_detail'] ?>
