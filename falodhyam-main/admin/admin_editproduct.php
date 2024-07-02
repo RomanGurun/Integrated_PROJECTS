@@ -137,6 +137,7 @@ echo"<script> alert('Product Updated Successfully')</script>";
  <select name="status" id="ProductStatusUpdate">
  <option value="<?= $fetch_product['status']; ?>"><?= $fetch_product['status']; ?></option>
  <option value="Active">active</option>
+ <option value="Deactive">Deactive</option>
 <!-- <option value="Deactive">deactive</option> -->
 
  </select>
